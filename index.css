@@ -1,0 +1,35 @@
+body {
+    background-color:white;
+    background-image:url('https://fullfocus.co/wp-content/uploads/2017/09/updated-whack-a-mole-1200x800.jpg');
+    background-repeat: no-repeat;
+    background-size:cover; 
+}
+h1 {
+    background-color:#979b9a;
+    border-color:black;
+    border-width:15px;
+    border:solid;
+    color:#58707c;
+}
+.center {
+    text-align:center;
+}
+button {
+    color:white;
+    background-color:red;
+    margin-top:5px;
+}
+.homeButton {
+    margin-top:20px;
+}
+a{
+    text-decoration: none;
+    color:white;
+}
+p {
+    background-color:#979b9a;
+    border-color:black;
+    border-width:15px;
+    border:solid;
+    color:#58707c;
+}
