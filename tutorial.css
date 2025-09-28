@@ -1,0 +1,34 @@
+body {
+    background-color:white;
+    background-image:url(https://png.pngtree.com/thumb_back/fh260/background/20220217/pngtree-hand-drawn-tutorial-class-blackboard-teaching-background-image_943884.jpg);
+    background-repeat: no-repeat;
+    background-size:cover; 
+}
+h1 {
+    background-color:#d7ac73;
+    border-color:black;
+    border-width:15px;
+    border:solid;
+    color:#a56813;
+    text-align:center;
+    margin-right:200px;
+}
+.center {
+    text-align:center;
+}
+button {
+    color:#b2553b;
+    background-color:#b2553b;
+    margin-top:5px;
+}
+.homeButton {
+    margin-top:15px;
+}
+p {
+    margin-right:50%;
+    background-color:#d7ac73;
+    border-color:black;
+    border-width:15px;
+    border:solid;
+    color:#a56813;
+}
