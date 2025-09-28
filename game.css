@@ -1,0 +1,9 @@
+.center{
+    text-align:center;
+}
+body{
+    background-color:green;
+    background-image:url('https://st3.depositphotos.com/5728050/13691/v/450/depositphotos_136913794-stock-illustration-meadow-grassland-sky-field-grass.jpg');
+    background-repeat: no-repeat;
+    background-size:cover; 
+}
