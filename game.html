@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Whack a Mole Game</title>
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+
+  <h1>Whack a Mole</h1>
+  <p>Time: <span id="time">30</span> | Score: <span id="score">0</span></p>
+  <button onclick="startGame()">Start</button>
+  <button onclick="resetGame()">Reset</button>
+  <br><br>
+  <label>
+    <input type="checkbox" id="multiplierOption"> Enable 2x Multiplier when reaching 20 points
+  </label>
+
+  <div id="board" style="display:grid; grid-template-columns:repeat(3,100px); gap:5px; justify-content:center; margin-top:20px;">
+    <div><img src="https://codehs.com/uploads/2ead069c5c3b0e70c19c01124341d4a3" class="mole" style="width:80px; display:none;"></div>
+    <div><img src="https://codehs.com/uploads/2ead069c5c3b0e70c19c01124341d4a3" class="mole" style="width:80px; display:none;"></div>
+    <div><img src="https://codehs.com/uploads/2ead069c5c3b0e70c19c01124341d4a3" class="mole" style="width:80px; display:none;"></div>
+    <div><img src="https://codehs.com/uploads/2ead069c5c3b0e70c19c01124341d4a3" class="mole" style="width:80px; display:none;"></div>
+    <div><img src="https://codehs.com/uploads/2ead069c5c3b0e70c19c01124341d4a3" class="mole" style="width:80px; display:none;"></div>
+    <div><img src="https://codehs.com/uploads/2ead069c5c3b0e70c19c01124341d4a3" class="mole" style="width:80px; display:none;"></div>
+    <div><img src="https://codehs.com/uploads/2ead069c5c3b0e70c19c01124341d4a3" class="mole" style="width:80px; display:none;"></div>
+    <div><img src="https://codehs.com/uploads/2ead069c5c3b0e70c19c01124341d4a3" class="mole" style="width:80px; display:none;"></div>
+    <div><img src="https://codehs.com/uploads/2ead069c5c3b0e70c19c01124341d4a3" class="mole" style="width:80px; display:none;"></div>
+  </div>
+
+  <script>
+    var score = 0;
+    var timeLeft = 40;
+    var timer;
+    var gameRunning = false;
+    var multiplier = 1;
+    var multiplierEnabled = false;
+    var multiplierActivated = false; // NEW flag
+
+    function randomMole() {
+      var moles = document.querySelectorAll(".mole");
+      moles.forEach(m => m.style.display = "none");
+      var i = Math.floor(Math.random() * moles.length);
+      moles[i].style.display = "block";
+      moles[i].onclick = function() {
+        if (gameRunning) {
+          score += (1 * multiplier);
+          document.getElementById("score").innerText = score;
+          moles[i].style.display = "none";
+
+          // Only trigger multiplier ONCE
+          if (score >= 20 && multiplierEnabled && !multiplierActivated) {
+            score = 0;
+            multiplier = 2;
+            multiplierActivated = true; // prevent repeat triggers
+            document.getElementById("score").innerText = score;
+            alert("Multiplier unlocked! You now get 2x points.");
+          }
+        }
+      };
+      if (gameRunning) {
+        setTimeout(randomMole, 800);
+      }
+    }
+
+    function startGame() {
+      if (gameRunning) return;
+      gameRunning = true;
+      score = 0;
+      timeLeft = 40;
+      multiplier = 1;
+      multiplierActivated = false; // reset for new game
+      multiplierEnabled = document.getElementById("multiplierOption").checked;
+
+      document.getElementById("score").innerText = score;
+      document.getElementById("time").innerText = timeLeft;
+
+      timer = setInterval(function() {
+        timeLeft--;
+        document.getElementById("time").innerText = timeLeft;
+        if (timeLeft <= 0) {
+          endGame();
+        }
+      }, 1000);
+
+      randomMole();
+    }
+
+    function endGame() {
+      gameRunning = false;
+      clearInterval(timer);
+      alert("Game Over! Final Score: " + score);
+    }
+
+    function resetGame() {
+      gameRunning = false;
+      clearInterval(timer);
+      score = 0;
+      timeLeft = 40;
+      multiplier = 1;
+      multiplierActivated = false;
+      document.getElementById("score").innerText = score;
+      document.getElementById("time").innerText = timeLeft;
+      var moles = document.querySelectorAll(".mole");
+      moles.forEach(m => m.style.display = "none");
+    }
+  </script>
+
+</body>
+</html>
